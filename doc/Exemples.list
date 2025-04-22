@@ -1,0 +1,43 @@
+DETECTER = "
+REMPLACER = \"
+REGEX = false
+EX = 
+Une expression régulière est une suite de caractères typographiques (qu’on appelle plus simplement "motif" – "pattern" en anglais) décrivant un ensemble de chaînes de caractères.
+
+
+DETECTER = (\d),(\d)
+REMPLACER = $1.$2
+REGEX = true
+EX = 
+En mathématiques, la fonction exponentielle est la fonction notée exp qui est égale à sa propre dérivée et prend la valeur 1 en 0. Elle est utilisée pour modéliser des phénomènes dans lesquels une différence constante sur la variable conduit à un rapport constant sur les images. Ces phénomènes sont en croissance dite « exponentielle ».
+On note e la valeur de cette fonction en 1. Ce nombre e qui vaut approximativement 2,71828 s'appelle la base de la fonction exponentielle.
+
+
+DETECTER = ([",{,},\[,\],(,),:])
+REMPLACER = \\$1
+REGEX = true
+EX = 
+{
+    "menu": {
+        "id": "file",
+        "value": "File",
+        "popup": {
+            "menuitem": [
+                { "value": "New", "onclick": "CreateNewDoc()" },
+                { "value": "Open", "onclick": "OpenDoc()" },
+                { "value": "Close", "onclick": "CloseDoc()" }
+            ]
+        }
+    }
+}
+
+
+DETECTER = \n
+REMPLACER = , 
+REGEX = false
+EX = 
+plusieurs
+mots
+sur
+plusieurs
+lignes
