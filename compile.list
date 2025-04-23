@@ -1,0 +1,6 @@
+src/polytext/controleur/Controleur.java
+src/polytext/modele/Remplaceur.java
+src/polytext/vue/FrameSaisie.java
+src/polytext/vue/ISaisies.java
+src/polytext/vue/PanelSaisie.java
+src/polytext/Main.java
