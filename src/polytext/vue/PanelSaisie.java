@@ -195,14 +195,16 @@ public class PanelSaisie extends JPanel implements DocumentListener, ActionListe
 		final SimpleAttributeSet NORMAL_ATTR = new SimpleAttributeSet();
 		this.docAppercu.setCharacterAttributes(0, docAppercu.getLength(), NORMAL_ATTR, true);
 
-		// Application du style rouge aux matches
-		final SimpleAttributeSet RED_ATTR = new SimpleAttributeSet();
-		StyleConstants.setForeground(RED_ATTR, Color.RED);
+		// Application du style aux matches
+		final SimpleAttributeSet MATCH_ATTR = new SimpleAttributeSet();
+		StyleConstants.setForeground(MATCH_ATTR, Color.WHITE);
+		StyleConstants.setBackground( MATCH_ATTR, Color.DARK_GRAY);
+
 		for( int[] pos : positions )
 		{
 			int start = pos[0];
 			int length = pos[1] - pos[0];
-			this.docAppercu.setCharacterAttributes(start, length, RED_ATTR, false);
+			this.docAppercu.setCharacterAttributes(start, length, MATCH_ATTR, false);
 		}
 	}
 
