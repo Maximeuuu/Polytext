@@ -8,3 +8,4 @@
   - export fichier
   - import de config perso regex
   - export de config perso regex
+- autoriser "clic droit + copier" sur les zones de texte
