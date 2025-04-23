@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
 public class Remplaceur
 {
@@ -13,16 +12,43 @@ public class Remplaceur
 
 	public Remplaceur( String motif, String remplacement, boolean estRegex )
 	{
-		this.motif = motif;
-
 		if( estRegex )
 		{
-			this.remplacement = remplacement;
+			this.motif = motif;
+			this.remplacement = Remplaceur.desechapper(remplacement);
 		}
 		else
 		{
+			this.motif = Pattern.quote(motif);
 			this.remplacement = Matcher.quoteReplacement( remplacement );
 		}
+	}
+
+	public static String desechapper(String texte)
+	{
+		StringBuilder sb = new StringBuilder();
+		for( int i = 0; i < texte.length(); i++ )
+		{
+			char c = texte.charAt(i);
+			if( c == '\\' && i + 1 < texte.length() )
+			{
+				char suivant = texte.charAt(i + 1);
+				switch (suivant)
+				{
+					case 'n': sb.append('\n'); i++; break;
+					case 't': sb.append('\t'); i++; break;
+					case 'r': sb.append('\r'); i++; break;
+					//case '\\': sb.append('\\'); i++; break; //cas à ne pas mettre
+					case '"': sb.append('\"'); i++; break;
+					default: sb.append(c); break;
+				}
+			}
+			else
+			{
+				sb.append(c);
+			}
+		}
+		return sb.toString();
 	}
 
 	public ResultatRemplaceur remplacer( String texte )
@@ -46,7 +72,7 @@ public class Remplaceur
 
 			resultat = sb.toString();
 		}
-		catch( PatternSyntaxException e )
+		catch( IndexOutOfBoundsException | IllegalArgumentException e )
 		{
 			positions.clear();
 			resultat = texte;

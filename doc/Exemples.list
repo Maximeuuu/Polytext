@@ -1,9 +1,14 @@
+# Exemples d'utilisation
+
+## echapper les guillemets
+
 DETECTER = "
 REMPLACER = \"
 REGEX = false
 EX = 
 Une expression régulière est une suite de caractères typographiques (qu’on appelle plus simplement "motif" – "pattern" en anglais) décrivant un ensemble de chaînes de caractères.
 
+## changement du separateur decimal
 
 DETECTER = (\d),(\d)
 REMPLACER = $1.$2
@@ -12,6 +17,7 @@ EX =
 En mathématiques, la fonction exponentielle est la fonction notée exp qui est égale à sa propre dérivée et prend la valeur 1 en 0. Elle est utilisée pour modéliser des phénomènes dans lesquels une différence constante sur la variable conduit à un rapport constant sur les images. Ces phénomènes sont en croissance dite « exponentielle ».
 On note e la valeur de cette fonction en 1. Ce nombre e qui vaut approximativement 2,71828 s'appelle la base de la fonction exponentielle.
 
+## suppression des caracteres speciaux du JSON
 
 DETECTER = ([",{,},\[,\],(,),:])
 REMPLACER = \\$1
@@ -31,13 +37,42 @@ EX =
     }
 }
 
+## suppression des retours a la ligne
 
 DETECTER = \n
 REMPLACER = , 
-REGEX = false
+REGEX = true
 EX = 
 plusieurs
 mots
 sur
 plusieurs
 lignes
+
+## changement style indentation
+
+DETECTER = ([^\n]*)\{\n(\t?(\t*))
+REMPLACER = $1\n$3\{\n$2
+REGEX = true
+EX = 
+bool is_negative(int x) {
+	if (x < 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+## espaces autour des parentheses
+
+DETECTER =  ?\( ?(.*) ?\) ?
+REMPLACER = \( $1 \)
+REGEX = true
+EX = 
+bool is_negative(int x) {
+	if (x < 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
