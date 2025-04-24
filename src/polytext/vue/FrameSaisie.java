@@ -1,6 +1,8 @@
 
 package polytext.vue;
 
+import java.awt.MenuBar;
+
 import javax.swing.JFrame;
 
 import polytext.controleur.Controleur;
@@ -14,6 +16,7 @@ public class FrameSaisie extends JFrame
 		super.add( new PanelSaisie( ctrl ) );
 		super.setSize(1500, 700);
 		super.setLocationRelativeTo( null );
+		super.setJMenuBar( new MenuPolytext(ctrl) );
 		super.setVisible(true);
 	}
 }

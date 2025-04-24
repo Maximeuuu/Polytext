@@ -15,7 +15,7 @@ import javax.swing.text.*;
 
 import polytext.controleur.Controleur;
 
-public class PanelSaisie extends JPanel implements DocumentListener, ActionListener, ISaisies
+public class PanelSaisie extends JPanel implements DocumentListener, ActionListener, ISaisies, IUpdates
 {
 	private Controleur ctrl;
 
@@ -35,6 +35,8 @@ public class PanelSaisie extends JPanel implements DocumentListener, ActionListe
 	{
 		super();
 		this.ctrl = ctrl;
+		this.ctrl.setIUpdates( this );
+		this.ctrl.setISaisies( this );
 
 		final int NB_LIG = 1;
 		final int NB_COL = 3;
@@ -145,12 +147,7 @@ public class PanelSaisie extends JPanel implements DocumentListener, ActionListe
 		this.cbRegex.addActionListener(this);
 	}
 
-	/* ========================================= */
-	/* Méthodes pour interractions sur interface */
-	/* ========================================= */
-
-	@Override
-	public String getTexteSaisie()
+	private String getTexteSaisie()
 	{
 		try
 		{
@@ -159,23 +156,9 @@ public class PanelSaisie extends JPanel implements DocumentListener, ActionListe
 		catch( BadLocationException ble ){ return ""; }
 	}
 
-	@Override
-	public String getCible()
-	{
-		return this.txtCible.getText();
-	}
-
-	@Override
-	public String getRemplacement()
-	{
-		return this.txtRemplacement.getText();
-	}
-
-	@Override
-	public boolean isRegex()
-	{
-		return this.cbRegex.isSelected();
-	}
+	/* ========================================= */
+	/* Méthodes pour interractions sur interface */
+	/* ========================================= */
 
 	@Override
 	public void setTexteAppercu( String texte )
@@ -226,13 +209,13 @@ public class PanelSaisie extends JPanel implements DocumentListener, ActionListe
 	@Override
 	public void insertUpdate(DocumentEvent e)
 	{
-		this.ctrl.updateTextes( this );
+		this.updateTextes( );
 	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e)
 	{
-		this.ctrl.updateTextes( this );
+		this.updateTextes();
 	}
 
 	@Override
@@ -241,6 +224,26 @@ public class PanelSaisie extends JPanel implements DocumentListener, ActionListe
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		this.ctrl.updateTextes( this );
+		this.updateTextes();
+	}
+
+	private void updateTextes()
+	{
+		this.ctrl.appliquerRemplacement( this.txtCible.getText(), this.txtRemplacement.getText(), this.getTexteSaisie(), this.cbRegex.isSelected() );
+	}
+
+	@Override
+	public void reset()
+	{
+		try
+		{
+			this.txtCible.setText("");
+			this.txtRemplacement.setText("");
+			
+			this.docOutput.remove(0, this.docOutput.getLength());
+			this.docAppercu.remove(0, this.docAppercu.getLength());
+			this.docInput.remove(0, this.docInput.getLength());
+		}
+		catch( BadLocationException e ){}
 	}
 }
