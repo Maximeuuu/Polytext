@@ -25,7 +25,8 @@ public class PanelSaisie extends JPanel implements DocumentListener, ActionListe
 
 	private JTextField txtCible;
 	private JTextField txtRemplacement;
-	private JCheckBox cbRegex;
+	private JRadioButton rbRegex;
+	private JRadioButton rbEtendu;
 
 	/* ============================= */
 	/* Initialisation des composants */
@@ -101,10 +102,26 @@ public class PanelSaisie extends JPanel implements DocumentListener, ActionListe
 		ligneRemplacement.add(Box.createRigidArea(new Dimension(5, 0)));
 		ligneRemplacement.add(txtRemplacement);
 
-		// partie "checkbox Regex"
-		this.cbRegex = new JCheckBox("Regex");
-		this.cbRegex.setMaximumSize(cbRegex.getPreferredSize());
-		this.cbRegex.setToolTipText("Active le mode expression régulière.\nPermet d’utiliser des motifs (regex) dans la recherche.");
+		// partie "radio button"
+		ButtonGroup rbGroupe = new ButtonGroup();
+
+		this.rbEtendu = new JRadioButton("Etendu");
+		this.rbEtendu.setMaximumSize(rbEtendu.getPreferredSize());
+		this.rbEtendu.setToolTipText("Active le mode expression étendue.\nPermet d’utiliser les caracteres d'echapement ('\\n', '\\t', ...).");
+
+		this.rbRegex = new JRadioButton("Regex");
+		this.rbRegex.setMaximumSize(rbRegex.getPreferredSize());
+		this.rbRegex.setToolTipText("Active le mode expression régulière.\nPermet d’utiliser des motifs (regex).");
+
+		rbGroupe.add(rbEtendu);
+		rbGroupe.add(rbRegex);
+		rbGroupe.setSelected(rbEtendu.getModel(), true);
+
+		JPanel ligneRb = new JPanel();
+		ligneRb.setLayout(new BoxLayout(ligneRb, BoxLayout.X_AXIS));
+		ligneRb.add(rbEtendu);
+		ligneRb.add(Box.createRigidArea(new Dimension(5, 0)));
+		ligneRb.add(rbRegex);
 
 		// partie "panneau central"
 		JPanel panelCentre = new JPanel();
@@ -117,7 +134,7 @@ public class PanelSaisie extends JPanel implements DocumentListener, ActionListe
 		panelCentre.add(ligneRemplacement);
 		panelCentre.add(Box.createRigidArea(new Dimension(0, 5)));
 
-		panelCentre.add(cbRegex);
+		panelCentre.add(ligneRb);
 		panelCentre.add(Box.createVerticalGlue());
 		panelCentre.add(Box.createRigidArea(new Dimension(0, 10)));
 		panelCentre.add(panelAppercu);
@@ -144,7 +161,8 @@ public class PanelSaisie extends JPanel implements DocumentListener, ActionListe
 		this.docInput.addDocumentListener(this);
 		this.txtCible.getDocument().addDocumentListener(this);
 		this.txtRemplacement.getDocument().addDocumentListener(this);
-		this.cbRegex.addActionListener(this);
+		this.rbEtendu.addActionListener(this);
+		this.rbRegex.addActionListener(this);
 	}
 
 	private String getTexteSaisie()
@@ -229,7 +247,7 @@ public class PanelSaisie extends JPanel implements DocumentListener, ActionListe
 
 	private void updateTextes()
 	{
-		this.ctrl.appliquerRemplacement( this.txtCible.getText(), this.txtRemplacement.getText(), this.getTexteSaisie(), this.cbRegex.isSelected() );
+		this.ctrl.appliquerRemplacement( this.txtCible.getText(), this.txtRemplacement.getText(), this.getTexteSaisie(), this.rbRegex.isSelected() );
 	}
 
 	@Override
