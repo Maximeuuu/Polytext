@@ -1,6 +1,13 @@
 src/polytext/controleur/Controleur.java
 src/polytext/modele/Remplaceur.java
+src/polytext/modele/Analyseur.java
+src/polytext/vue/AbstractMenuBarre.java
 src/polytext/vue/FrameSaisie.java
 src/polytext/vue/ISaisies.java
+src/polytext/vue/IStats.java
+src/polytext/vue/IUpdates.java
+src/polytext/vue/MenuPolytext.java
+src/polytext/vue/OptionPaneAbout.java
 src/polytext/vue/PanelSaisie.java
+src/polytext/vue/PanelStatistiques.java
 src/polytext/Main.java
