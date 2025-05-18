@@ -1,3 +1,7 @@
+@echo off
+
+REM Racine du projet
 cd /d "%~dp0"
 
-java -cp bin polytext.Main
+REM Lancer le java
+java -Dfile.encoding=UTF-8 -cp bin;lib/* polytext.App

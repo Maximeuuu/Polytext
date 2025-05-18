@@ -1,9 +1,9 @@
 package polytext;
 
 import polytext.controleur.Controleur;
-import polytext.vue.FrameSaisie;
+import polytext.vue.saisie.FrameSaisie;
 
-public class Main
+public class App
 {
 	@SuppressWarnings("unused")
 	public static void main(String[] args)

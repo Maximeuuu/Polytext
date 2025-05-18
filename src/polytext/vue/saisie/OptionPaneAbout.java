@@ -1,4 +1,4 @@
-package polytext.vue;
+package polytext.vue.saisie;
 
 import javax.swing.JOptionPane;
 

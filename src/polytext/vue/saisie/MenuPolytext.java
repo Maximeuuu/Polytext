@@ -1,4 +1,4 @@
-package polytext.vue;
+package polytext.vue.saisie;
 
 import polytext.controleur.Controleur;
 
@@ -10,7 +10,7 @@ public class MenuPolytext extends AbstractMenuBarre
 	public static final String I_MENU_ABOUT = "À propos";
 	public static final String I_MENU_RESET = "Réinitialiser";
 	public static final String I_MENU_EXIT = "Quitter";
-	public static final String I_REGEX_SAVE = "Enregistrer";
+	public static final String I_REGEX_NEW = "Nouveau";
 	public static final String I_REGEX_SELECT = "Sélectionner";
 
 	public MenuPolytext( Controleur ctrl )
@@ -39,7 +39,7 @@ public class MenuPolytext extends AbstractMenuBarre
 			{		ITEM, 		"Importer",			"",	""					},
 			{		ITEM, 		"Exporter",			"",	""					},*/
 			{	MENU, 			"Regex",			"",		"R", "CTRL+R"	},
-			{		ITEM, 		I_REGEX_SAVE,		"",	""					},
+			{		ITEM, 		I_REGEX_NEW,		"",	""					},
 			{		ITEM, 		I_REGEX_SELECT,		"",	""					}
 		};
 	}

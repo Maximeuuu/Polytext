@@ -1,4 +1,4 @@
-package polytext.vue;
+package polytext.vue.saisie;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -14,6 +14,7 @@ import javax.swing.event.*;
 import javax.swing.text.*;
 
 import polytext.controleur.Controleur;
+import polytext.vue.Outils;
 
 public class PanelSaisie extends JPanel implements DocumentListener, ActionListener, ISaisies, IUpdates
 {
@@ -39,15 +40,23 @@ public class PanelSaisie extends JPanel implements DocumentListener, ActionListe
 		this.ctrl.setIUpdates( this );
 		this.ctrl.setISaisies( this );
 
+		this.initPanel();
+		this.placerComposants();
+		this.addListeners();
+	}
+
+	private void initPanel()
+	{
 		final int NB_LIG = 1;
 		final int NB_COL = 3;
 		this.setLayout(new GridLayout(NB_LIG, NB_COL));
+	}
 
+	private void placerComposants()
+	{
 		this.add( this.creerPanelInput() );
 		this.add( this.creerPanelCentre() );
 		this.add( this.creerPanelOutput() );
-
-		this.addListener();
 	}
 
 	private JPanel creerPanelInput()
@@ -87,20 +96,8 @@ public class PanelSaisie extends JPanel implements DocumentListener, ActionListe
 		txtCible.setMaximumSize(fieldSize);
 		txtRemplacement.setMaximumSize(fieldSize);
 
-		JLabel lblCible = new JLabel("Texte à chercher :");
-		JLabel lblRemplacement = new JLabel("Texte de remplacement :");
-
-		JPanel ligneCible = new JPanel();
-		ligneCible.setLayout(new BoxLayout(ligneCible, BoxLayout.X_AXIS));
-		ligneCible.add(lblCible);
-		ligneCible.add(Box.createRigidArea(new Dimension(5, 0)));
-		ligneCible.add(txtCible);
-
-		JPanel ligneRemplacement = new JPanel();
-		ligneRemplacement.setLayout(new BoxLayout(ligneRemplacement, BoxLayout.X_AXIS));
-		ligneRemplacement.add(lblRemplacement);
-		ligneRemplacement.add(Box.createRigidArea(new Dimension(5, 0)));
-		ligneRemplacement.add(txtRemplacement);
+		JPanel ligneCible = Outils.creerPanelLabelComposant( "Texte à chercher :", this.txtCible );
+		JPanel ligneRemplacement = Outils.creerPanelLabelComposant( "Texte de remplacement :", this.txtRemplacement );
 
 		// partie "radio button"
 		ButtonGroup rbGroupe = new ButtonGroup();
@@ -156,7 +153,7 @@ public class PanelSaisie extends JPanel implements DocumentListener, ActionListe
 		return panelOutput;
 	}
 
-	private void addListener()
+	private void addListeners()
 	{
 		this.docInput.addDocumentListener(this);
 		this.txtCible.getDocument().addDocumentListener(this);
@@ -263,5 +260,42 @@ public class PanelSaisie extends JPanel implements DocumentListener, ActionListe
 			this.docInput.remove(0, this.docInput.getLength());
 		}
 		catch( BadLocationException e ){}
+	}
+
+	@Override
+	public void setCible(String cible)
+	{
+		this.txtCible.setText( cible );
+	}
+
+	@Override
+	public void setRemplacement(String remplacement)
+	{
+		this.txtRemplacement.setText( remplacement );
+	}
+
+	@Override
+	public void setEstRegex(boolean estRegex)
+	{
+		if( estRegex ) this.rbRegex.setSelected(true);
+		else this.rbEtendu.setSelected(true);
+	}
+
+	@Override
+	public String getCible()
+	{
+		return this.txtCible.getText();
+	}
+
+	@Override
+	public String getRemplacement()
+	{
+		return this.txtRemplacement.getText();
+	}
+
+	@Override
+	public boolean getEstRegex()
+	{
+		return this.rbRegex.isSelected();
 	}
 }

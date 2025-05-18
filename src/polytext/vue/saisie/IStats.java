@@ -1,4 +1,4 @@
-package polytext.vue;
+package polytext.vue.saisie;
 
 public interface IStats
 {

@@ -1,0 +1,7 @@
+1	suppr retour à la ligne	\n	, 	true
+2	echap guillemets	"	\"	false
+3	decimal en -> fr	(\d).(\d)	$1.$2	true
+4	decimal fr -> en	(\d),(\d)	$1.$2	true
+5	indentation allman	([^\n]*)\{\n(\t?(\t*))	$1\n$3\{\n$2	true
+6	trim json	([",{,},\[,\],(,),:])	\\$1	true
+7	espaces parentheses fr	 ?\( ?(.*) ?\) ?	\( $1 \)	true

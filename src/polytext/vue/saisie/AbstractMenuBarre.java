@@ -1,4 +1,4 @@
-package polytext.vue;
+package polytext.vue.saisie;
 
 import java.util.ArrayList;
 import java.util.List;

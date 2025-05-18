@@ -1,9 +1,17 @@
 # TODO
 
 - optimiser les maj avec les méthodes de DocumentEvent "getOffset()" et "getLength()"
-- ajouter menu déroulant avec configs par défaut (configurations pour cible/remplacement/estRegex pour des taches classiques)
+- améliorer style bandeau déroulant regex
+- améliorer manière de gérer la partie selection/edition des regex
+- gérer les bugs et cas particuliers lors de la modification des regex (suppression d'un ajout)
+- dev la partie "préférences"
+- dev la partie "modification" des regex
+
+- architecture
+  - ameliorer MVC
+  - ameliorer partie Repository
+
 - ajouter fonctionnalités complémentaires
-  - count word / char / {nb apparition du regex}
   - import de fichier
   - export fichier
   - import de config perso regex

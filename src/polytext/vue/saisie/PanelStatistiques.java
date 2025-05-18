@@ -1,4 +1,4 @@
-package polytext.vue;
+package polytext.vue.saisie;
 
 import java.awt.BorderLayout;
 import java.awt.Insets;
