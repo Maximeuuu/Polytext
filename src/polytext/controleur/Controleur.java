@@ -3,7 +3,6 @@ package polytext.controleur;
 import polytext.modele.Analyseur;
 import polytext.modele.RegexData;
 import polytext.modele.Remplaceur;
-import polytext.modele.StockageRegex;
 import polytext.modele.Analyseur.ResultatAnalyseur;
 import polytext.modele.Remplaceur.ResultatRemplaceur;
 import polytext.modele.stockage.RepositoryRegexData;

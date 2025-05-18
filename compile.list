@@ -3,7 +3,6 @@ src\polytext\controleur\Controleur.java
 src\polytext\modele\Analyseur.java 
 src\polytext\modele\RegexData.java 
 src\polytext\modele\Remplaceur.java 
-src\polytext\modele\StockageRegex.java 
 src\polytext\modele\stockage\RepositoryRegexData.java 
 src\polytext\modele\stockage\Stockeur.java 
 src\polytext\vue\Outils.java 
